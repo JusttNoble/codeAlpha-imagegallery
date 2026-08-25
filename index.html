@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Photo Gallery</h1>
+        <div class="container-info">
+            <p>image gallery</p>
+            <div class="filterBtn">
+                <button data-filter="all">All</button>
+                <button data-filter="nature">Nature</button>
+                <button data-filter="building">Buildings</button>
+                <button data-filter="animal">Animals</button>
+                <button data-filter="technology">Technology</button>
+            </div>
+        </div>
+        <div class="gallery">
+            <div class="gallery-item nature">
+                <img src="images/AMIJ5608 (1).JPG" alt="tree">
+            </div>
+            <div class="gallery-item animal">
+                <img src="images/CWTW4407.JPG" alt="deer">
+            </div>
+            <div class="gallery-item technology">
+                <img src="images/IMG_3546.JPG" alt="man with laptop">
+            </div>
+
+            <div class="gallery-item animal">
+                <img src="images/IMG_3543.JPG" alt="cat">
+            </div>
+            <div class="gallery-item animal">
+                <img src="images/IMG_3544.JPG" alt="racoon">
+            </div>
+            <div class="gallery-item technology">
+                <img src="images/IMG_3545.JPG" alt="code">
+            </div>
+            <div class="gallery-item animal">
+                <img src="images/IMG_3542.JPG" alt="fox">
+            </div>
+            <div class="gallery-item technology">
+                <img src="images/IMG_3547.JPG" alt="workspace">
+            </div>
+            <div class="gallery-item nature">
+                <img src="images/CXYT9946.JPG" alt="ntech logo">
+            </div>
+            <div class="gallery-item building">
+                <img src="images/IMG_3549.JPG" alt="glass building">
+            </div>
+            <div class="gallery-item building">
+                <img src="images/IMG_3550.JPG" alt="glass building 2">
+            </div>
+            <div class="gallery-item building">
+                <img src="images/IMG_3551.JPG" alt="tall building">
+            </div>
+            <div class="gallery-item building">
+                <img src="images/IMG_3552.JPG" alt="sky scrapper">
+            </div>
+        </div>
+        <div id="displayBox" class="display-box">
+            <span class="close">✕</span>
+            <img class="displaybox-content" id="displayboxImg">
+            <div id="aboutText" class="about-text"></div>
+            <div class="navigation">
+                <span class="prev">⟪</span>
+                <span class="next">⟫</span>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="index.js"></script>
+</body>
+
+</html>
