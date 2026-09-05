@@ -78,7 +78,7 @@ filterButtons.forEach(button => {
     });
 });
 
-const img = document.querySelector('.img');
+const img = document.querySelector('.image');
 img.addEventListener('touchstart', () => {
   img.classList.add('hover-effect');
 });

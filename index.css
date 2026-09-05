@@ -66,8 +66,8 @@ body{
     transition: transform .4s ease, filter .4s ease;
 }
 .gallery-item img:hover,
-.img:active,
-.img:focus {
+.image:active,
+.image:focus {
     transform: scale(1.1);
     filter: brightness(70%);
 }
