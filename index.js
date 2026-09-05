@@ -77,3 +77,11 @@ filterButtons.forEach(button => {
         currentIndex = 0;
     });
 });
+
+const img = document.querySelector('.img');
+img.addEventListener('touchstart', () => {
+  img.classList.add('hover-effect');
+});
+img.addEventListener('touchend', () => {
+  img.classList.remove('hover-effect');
+});
