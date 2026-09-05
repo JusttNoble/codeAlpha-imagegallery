@@ -21,9 +21,13 @@ body{
     justify-content: space-between;
     padding: 20px;
     margin-top: 20px;
-    border: 2px solid black;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
     border-radius: 20px;
     align-items: center;
+    position: sticky;
+    top: 20px;
+    z-index: 999;
+    background: #fff;
 }
 .container-info p{
     font-size: 20px;
