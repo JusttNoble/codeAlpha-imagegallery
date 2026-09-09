@@ -269,7 +269,7 @@ aside .filterBtn button:hover {
 
 .gallery .images img {
     width: 100%;
-    height: 100px;
+    height: 100%;
     object-fit: cover;
     border-radius: 10px;
     cursor: pointer;
