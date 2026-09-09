@@ -1,87 +1,84 @@
-const galleryItems = document.querySelectorAll('.gallery-item');
-const displayBox = document.getElementById('displayBox');
-const displayboxImg = document.getElementById('displayboxImg');
-const closeBtn = document.querySelector('.close');
-const nextBtn = document.querySelector('.next');
-const prevBtn = document.querySelector('.prev');
-const filterButtons = document.querySelectorAll('.filterBtn button');
-const aboutText = document.getElementById('aboutText');
+const imageViewer = document.getElementById('imageViewer');
+const closeBtn = document.getElementById('closeBtn');
+const images = document.querySelectorAll('.images img');
+const viewerImg = document.getElementById('viewerImg');
+const nextBtn = document.getElementById('next');
+const prevBtn = document.getElementById('prev');
 
 let currentIndex = 0;
-let visibleGalleryItems = Array.from(galleryItems);
+
+images.forEach((img, index)=> {
+    img.addEventListener('click', () => {
+        
+        imageViewer.classList.add('active');
+        viewerImg.src = img.src;
+        currentIndex = index;
+    });
+});
+
+closeBtn.onclick= function(){
+    imageViewer.classList.remove('active')
+}
 
 
-const descriptions = [
-    "A lush green tree standing tall in nature.",
-    "A graceful deer captured in the wild.",
-    "A man working intently on his laptop.",
-    "A curious cat gazing at the camera.",
-    "A playful raccoon exploring its surroundings.",
-    "A computer screen displaying lines of code.",
-    "A fox resting quietly in the grass.",
-    "A modern workspace setup with technology.",
-    "A creative logo design representing NTech.",
-    "A sleek glass building reflecting the sky.",
-    "Another perspective of a tall glass structure.",
-    "A towering building dominating the skyline.",
-    "A skyscraper reaching high into the clouds."
-];
-
-const showCurrentImage = () => {
-    if (visibleGalleryItems.length === 0) return;
-
-    const img = visibleGalleryItems[currentIndex].querySelector('img');
-    displayboxImg.src = img.src;
-    aboutText.textContent = descriptions[currentIndex] || "";
+nextBtn.onclick = function(){
+    currentIndex = (currentIndex +1) % images.length;
+    viewerImg.src = images[currentIndex].src;
 };
 
-galleryItems.forEach((item, index) => {
-    const img = item.querySelector('img');
-    img.addEventListener('click', () => {
-        displayBox.style.display = 'block';
-        currentIndex = visibleGalleryItems.indexOf(item);
-        showCurrentImage();
+prevBtn.onclick = function(){
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    viewerImg.src = images[currentIndex].src;
+};
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const gallery = document.querySelector(".gallery");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        gallery.classList.add("show");
+        observer.unobserve(gallery);
+      }
     });
+  }, { threshold: 0.2 }); 
+
+  observer.observe(gallery);
 });
 
-closeBtn.addEventListener('click', () => {
-    displayBox.style.display = 'none';
-});
+document.addEventListener("DOMContentLoaded", () => {
+  const galleryItems = document.querySelectorAll(".gallery .images");
+  const searchInput = document.querySelector(".search-container input");
+  const filterButtons = document.querySelectorAll(".filterBtn button, .mobileFilter button");
 
-prevBtn.addEventListener('click', () => {
-    if (visibleGalleryItems.length === 0) return;
-
-    currentIndex = (currentIndex > 0) ? currentIndex - 1 : visibleGalleryItems.length - 1;
-    showCurrentImage();
-});
-
-nextBtn.addEventListener('click', () => {
-    if (visibleGalleryItems.length === 0) return;
-
-    currentIndex = (currentIndex < visibleGalleryItems.length - 1) ? currentIndex + 1 : 0;
-    showCurrentImage();
-});
-
-filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const filter = button.getAttribute('data-filter');
-        galleryItems.forEach(item => {
-            if (filter === 'all' || item.classList.contains(filter)) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
-        });
-
-        visibleGalleryItems = Array.from(galleryItems).filter(item => item.style.display !== 'none');
-        currentIndex = 0;
+  // 🔍 Search functionality
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase();
+    galleryItems.forEach(item => {
+      const altText = item.querySelector("img").alt.toLowerCase();
+      const category = item.querySelector("img").dataset.category.toLowerCase();
+      if (altText.includes(query) || category.includes(query)) {
+        item.style.display = "block";
+      } else {
+        item.style.display = "none";
+      }
     });
+  });
+
+  // 🎯 Filter functionality
+  filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const category = button.textContent.toLowerCase();
+      galleryItems.forEach(item => {
+        const itemCategory = item.querySelector("img").dataset.category.toLowerCase();
+        if (category === "all" || itemCategory === category) {
+          item.style.display = "block";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    });
+  });
 });
 
-const img = document.querySelector('.image');
-img.addEventListener('touchstart', () => {
-  img.classList.add('hover-effect');
-});
-img.addEventListener('touchend', () => {
-  img.classList.remove('hover-effect');
-});
