@@ -247,7 +247,7 @@ aside .filterBtn button:hover {
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 10px;
+    gap: 20px;
     width: 100%;
     padding: 20px;
     opacity: 0;
