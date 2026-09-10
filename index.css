@@ -364,3 +364,12 @@ aside .filterBtn button:hover {
         padding: 3px 6px;
     }
 }
+@media (max-width: 500px){
+    .hero-container{
+            background: black;
+            padding: 8% 10px;
+        }
+    .gallery {
+        padding: 0;
+    }
+}
