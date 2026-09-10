@@ -307,6 +307,11 @@ aside .filterBtn button:hover {
 
     .gallery {
         gap: 20px;
+        grid-template-columns: repeat(2, 1fr);
+        background: red;
+    }
+    .gallery .images{
+        height: 150px;
     }
 
     .gallery .images img {
