@@ -5,20 +5,19 @@
 }
 
 body {
-    font-family: "poppins", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    background: whitesmoke;
-    height: 100%;
+    background: #333;
+    min-height: 100vh;
     position: relative;
     color: white;
-    background: #333;
-
 }
+
 
 .image-viewer {
     background: rgba(0, 0, 0, 0.9);
@@ -88,7 +87,6 @@ body {
 aside {
     background: black;
     padding: 8% 20px;
-
 }
 
 aside {
@@ -145,31 +143,38 @@ aside .filterBtn button:hover {
 
 .hero-container {
     width: calc(100% - 260px);
+    margin-left: 260px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    margin-left: 260px;
     justify-content: center;
+    gap: 20px;
     min-height: 100vh;
 }
 
 .hero-container h2 {
     font-size: clamp(2rem, 6vw, 4.5rem);
+    /* Animation */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp .8s ease forwards;
 }
+
 
 .info {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    position: sticky;
-    top: 0;
     background-color: black;
     width: 100%;
     align-items: center;
     padding: 10px;
     z-index: 999;
-
+    /* Animation */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp .8s ease forwards;
+    animation-delay: .3s;
 }
 
 .hero-container p {
@@ -203,23 +208,19 @@ aside .filterBtn button:hover {
     outline: none;
     caret-color: black;
     font-size: 15px;
-    caret-shape: bar;
 }
 
 .fa-magnifying-glass {
     color: whitesmoke;
 }
 
-.search-container ::placeholder {
-    color: #888;
+.search-container input::placeholder {
+    color: black;
     font-size: 14px;
     font-style: italic;
     opacity: 1;
 }
 
-.search-container input::placeholder {
-    color: black;
-}
 
 .mobileFilter {
     display: none;
@@ -229,8 +230,7 @@ aside .filterBtn button:hover {
     justify-content: center;
     visibility: hidden;
     opacity: 0;
-    transition: 0.3s ease;
-
+    transition: .3s ease;
 }
 
 .mobileFilter button {
@@ -243,21 +243,18 @@ aside .filterBtn button:hover {
     color: whitesmoke;
 }
 
-
+/* ========================= GALLERY ========================= */
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
     width: 100%;
     padding: 20px;
+    /* Gallery animation */
     opacity: 0;
     transform: translateY(50px);
-    transition: opacity 1s ease, transform 1s ease;
-}
-
-.gallery.show {
-    opacity: 1;
-    transform: translateY(0);
+    animation: galleryFade 1s ease forwards;
+    animation-delay: 1s;
 }
 
 .gallery .images {
@@ -282,7 +279,22 @@ aside .filterBtn button:hover {
 }
 
 
-@media (max-width:700px) {
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes galleryFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@media (max-width: 700px) {
     aside {
         display: none;
     }
@@ -295,7 +307,6 @@ aside .filterBtn button:hover {
 
     .gallery {
         gap: 20px;
-
     }
 
     .gallery .images img {
