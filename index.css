@@ -368,6 +368,7 @@ aside .filterBtn button:hover {
     .hero-container{
             background: black;
             padding: 8% 10px;
+            width: 100%;
         }
     .gallery {
         padding: 0;
